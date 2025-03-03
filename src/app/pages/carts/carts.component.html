@@ -1,0 +1,65 @@
+@if (cartData!=null) {<section class="bg-slate-100 rounded-md my-4 p-4 shadow-md w-[85%] mx-auto relative">
+
+    <h1 class="font-black text-4xl text-emerald-400 text-main my-3">Cart</h1>
+
+    <div class="flex items-center justify-between">
+    <h3 class="font-black text-2xl text-main my-3">Total Cart Price:@if (cartData.totalCartPrice>0) { {{cartData.totalCartPrice |currency :'GBP'}} } @else {0 EGP} </h3>
+        @if (cartData.totalCartPrice>0) {    <button (click)="deleteAllCart()" class="btn-main w-[10%] ">clear cart</button>
+    }
+</div>
+
+    <div class="container w-[90%] mx-auto ">
+    
+    
+            @for (product of cartData.products; track product.product) {
+                <div class="flex flex-wrap justify-between items-center border-b-4 border-gray-300 py-2">
+    
+                    <div class="w-full sm:w-1/5 ">
+        
+                        <div class="p-img">
+                            <img [src]="product.product.imageCover"  class="w-[70%] object-contain" [alt]="product.product.title">
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="w-full sm:w-1/2 ">
+        
+                        <div class="p-desc">
+        
+                            <h1 class="font-black text-3xl my-3">{{product.product.title}}</h1>
+                            <h2 class="font-black text-2xl my-3 text-emerald-400 text-main">price: {{product.price}}</h2>
+                            <h3 (click)="deleteItemFromCart(product.product._id)" class=" text-red-500 my-3  cursor-pointer">Remove<span><i class="fa-solid fa-trash"></i></span></h3>
+                        </div>
+                        
+                    </div>
+        
+        
+                    <div class="w-full sm:w-1/5 ">
+        
+                        <div class="count flex text-main text-2xl flex-wrap justify-between">
+        
+                            <span (click)="updateCount(product.product._id,product.count +1)"><i class=" cursor-pointer fa-solid fa-circle-plus"></i></span>
+                            <h3 class="">{{product.count}}</h3>
+                            @if (product.count>1) {<span (click)="updateCount(product.product._id,product.count -1)"><i class="cursor-pointer fa-solid fa-circle-minus"></i></span>
+                        }
+                        </div>
+                        
+                    </div>
+        
+        
+        
+                </div>
+            }
+
+            @if (cartData.products.length>0) { 
+
+                <div class="my-3 ">
+                <button [routerLink]="['/checkout',cartData._id]" class="btn-main w-full mx-auto block">Check out</button>
+                </div>
+            }
+
+    
+    </div>
+    
+    </section>}

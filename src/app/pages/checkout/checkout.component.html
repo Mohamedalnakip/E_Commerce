@@ -1,0 +1,100 @@
+<section class="bg-slate-100 rounded-md my-4 p-4 shadow-md w-[90%] mx-auto relative">
+    <h1 class="text-main font-black  font-bold text-3xl">Payment:</h1>
+
+    <form [formGroup]="detailsForm" (ngSubmit)="detailsSubmit()">
+
+
+        <div class="my-3">
+        
+            @let details= detailsForm.get('details');
+
+            <label for="details"  class="block mb-2 text-sm  font-medium text-gray-900">details:</label>
+            <input [class]="{
+                'my-valid':!details?.errors && (details?.touched || details?.dirty ),
+                'my-invalid':details?.errors && (details?.touched || details?.dirty),
+            }" type="text" formControlName="details" id="details" placeholder="ex:Example@example.com" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+            @if (details?.errors && details?.touched ) {<div class="flex p-4 mb-4 text-sm my-2  text-red-800 rounded-lg bg-red-50" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                <span class="font-medium">Ensure that these requirements are met:</span>
+                    <ul class="mt-1.5 list-disc list-inside">
+                @if (details?.getError('required')) {<li>details input is Required</li>}
+                            
+                
+                </ul>
+                </div>
+            </div>
+            }
+    </div>
+
+<div class="my-3">
+        
+    @let phone= detailsForm.get('phone');
+
+    <label for="phone"  class="block mb-2 text-sm  font-medium text-gray-900">phone:</label>
+    <input [class]="{
+        'my-valid':!phone?.errors && (phone?.touched || phone?.dirty ),
+        'my-invalid':phone?.errors && (phone?.touched || phone?.dirty),
+    }" type="tel" formControlName="phone" id="phone" placeholder="ex:01000xxxxx" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+    @if (phone?.errors && phone?.touched ) {<div class="flex p-4 mb-4 text-sm my-2  text-red-800 rounded-lg bg-red-50" role="alert">
+        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+        <span class="font-medium">Ensure that these requirements are met:</span>
+            <ul class="mt-1.5 list-disc list-inside">
+        @if (phone?.getError('required')) {<li>phone input is Required</li>}
+        @if (phone?.getError('pattern')) { <li>phone format is required</li>}
+
+        
+        </ul>
+        </div>
+    </div>
+    }
+</div>
+
+
+
+<div class="my-3">
+        
+    @let city= detailsForm.get('city');
+
+    <label for="city"  class="block mb-2 text-sm  font-medium text-gray-900">city:</label>
+    <input [class]="{
+        'my-valid':!city?.errors && (city?.touched || city?.dirty ),
+        'my-invalid':city?.errors && (city?.touched || city?.dirty),
+    }" type="text" formControlName="city" id="city" placeholder="ex:Cxxxx" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+    @if (city?.errors && city?.touched ) {<div class="flex p-4 mb-4 text-sm my-2  text-red-800 rounded-lg bg-red-50" role="alert">
+        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+        <span class="font-medium">Ensure that these requirements are met:</span>
+            <ul class="mt-1.5 list-disc list-inside">
+        @if (city?.getError('required')) {<li>city input is Required</li>}
+                    
+        
+        </ul>
+        </div>
+    </div>
+    }
+</div>
+
+
+<div >
+    <button class="rounded-md btn-main text-main p-2 text-xl text-white w-full">payment <span><i class="fa-brands fa-cc-visa"></i></span></button>
+
+</div>
+    </form>
+
+
+
+</section>

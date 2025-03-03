@@ -1,0 +1,53 @@
+@if (wishListData!=null) {<section class="bg-slate-100 rounded-md my-4 p-4 shadow-md w-[85%] mx-auto relative">
+
+    <h1 class="font-black text-4xl text-emerald-400 text-main my-3">My wish List</h1>
+
+    <div class="container w-[90%] mx-auto ">
+    
+    
+            @for (WishProduct of wishListData.data; track WishProduct._id) {
+                <div class="flex flex-wrap justify-between items-center border-b-4 border-gray-300 py-2">
+    
+                    <div class="w-full sm:w-1/5 ">
+        
+                        <div class="p-img">
+                            <img [src]="WishProduct.imageCover"  class="w-[70%] object-contain" [alt]="WishProduct.title">
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="w-full sm:w-1/2 ">
+        
+                        <div class="p-desc">
+                            <!-- (click)="deleteItemFromWishList(product.product._id) -->
+                            <h1 class="font-black text-3xl my-3">{{WishProduct.title}}</h1>
+                            <h2 class="font-black text-2xl my-3 text-emerald-400 text-main">price: {{WishProduct.price}}</h2>
+                            <h3 (click)="removeFromWishList(WishProduct._id)"  class=" text-red-500 my-3  cursor-pointer">Remove<span><i class="fa-solid fa-trash"></i></span></h3>
+                        </div>
+                        
+                    </div>
+        
+        
+                    <div class="w-full sm:w-1/5 ">
+        
+                        <div class="count flex text-main text-l flex-wrap justify-between">
+                                <!-- (click)="deleteAllWishList()" -->
+                            <button (click)="addToCart(WishProduct._id)" class="btn-main w-[70%] ">+Add To cart</button>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- @if (cartData.products.length>0) { 
+
+                <div class="my-3 ">
+                <button [routerLink]="['/checkout',cartData._id]" class="btn-main w-full mx-auto block">Check out</button>
+                </div>
+            } -->
+
+    
+    </div>
+    
+    </section>}

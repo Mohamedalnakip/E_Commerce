@@ -1,0 +1,56 @@
+<section class=" p-4 my-5">
+    <input [(ngModel)]="searchValue" type="" placeholder="Search by name.. " class="p-4 mx-auto block rounded-xl border border-green-500 w-[50%]">
+
+<div class="container my-7 w-[90] mx-auto">
+
+    <!-- <h1 class="main-title  ">Product </h1> -->
+
+    <div class=" grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+
+
+        @for (product of productContent|search : searchValue ; track product.id) {
+
+            <div class="product cursor-pointer p-4 " >
+                <span #heart  (click)="addToWishList(product._id)" class="  text-2xl"><i class="fa-solid fa-heart"></i></span>
+
+                <div [routerLink]="['/product-details',product._id]">
+                    <div class="mt-4">
+
+                        <img [src]="product.imageCover" [alt]="product.title">
+                    </div>
+        
+                    <div class="mt-4">
+                        <h2 class="text-main">{{product.category.name}}  </h2>
+    
+                        <h1 class="font-black">{{product.title.split(' ').slice(0,3).join(' ')}} </h1>
+                    </div>
+        
+                    <div class="mt-4 flex flex-wrap justify-between">
+        
+                        <h3>{{product.price}}</h3>
+                        <span><i class="rating-color fa-solid fa-star"></i>   {{product.ratingsAverage}}</span>
+                    </div>
+                </div>
+    
+                <div class="mt-4">
+                        <button (click)="addToCart(product._id)" class=" btn-main w-3/4 mx-auto block">+Add to cart</button>
+                </div>
+    
+            </div>
+        }
+    
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</section>

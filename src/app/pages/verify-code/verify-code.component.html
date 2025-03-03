@@ -1,0 +1,37 @@
+<section class="bg-slate-100 rounded-md my-4 p-4 shadow-md w-[90%] mx-auto relative">
+    <h1 class="text-main font-black  font-bold text-3xl">Enter the code:</h1>
+    <form [formGroup]="codeReset" (ngSubmit)="resetCode()">
+    
+
+        <div class="my-3">
+        
+            @let emailFormControl= codeReset.get('code');
+
+            <label for="resetCode"  class="block mb-2 text-sm  font-medium text-gray-900">resetCode:</label>
+            <input  type="text" formControlName="resetCode" id="resetCode" placeholder="ex:XXXXX" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+            @if (emailFormControl?.errors && emailFormControl?.touched ) {<div class="flex p-4 mb-4 text-sm my-2  text-red-800 rounded-lg bg-red-50" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                <span class="font-medium">Ensure that these requirements are met:</span>
+                    <ul class="mt-1.5 list-disc list-inside">
+                @if (emailFormControl?.getError('required')) {<li>code input is Required</li>}
+            
+                
+                
+                </ul>
+                </div>
+            </div>
+            }
+    </div>
+
+        <div>
+            <button [disabled]="codeReset.invalid"  class="disabled:bg-slate-300 rounded-md btn-main text-main p-2 text-xl text-white w-full">verify code
+            </button>
+
+        </div>
+    </form>
+</section>

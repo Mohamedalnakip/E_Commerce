@@ -1,0 +1,50 @@
+<section class="bg-slate-100 rounded-md my-4 p-4 shadow-md w-[90%] mx-auto relative">
+    
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700  bg-gray-50">
+            <tr class="text-main font-extrabold text-xl">
+                <th scope="col" class=" px-6 py-3">
+                    Product id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product isPaid
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product paymentMethodType
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    product totalOrderPrice
+                </th>
+            
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (order of allOrders; track order._id) {
+                <tr class="bg-white border-b border-gray-200">
+                    <th scope="row" class="px-6  py-4 font-medium text-gray-900 whitespace-nowrap ">
+                        {{order.id}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{order.isPaid}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{order.paymentMethodType}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{order.totalOrderPrice}}
+                    </td>
+                
+                </tr>
+            }
+        
+        
+        </tbody>
+    </table>
+</div>
+
+</section>
+
+
